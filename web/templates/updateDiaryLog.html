@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+    <title>New diary log</title>
+  </head>
+  <body>
+    <nav id="navbar" class="">
+      <div class="nav-wrapper">
+        <!-- Navbar Logo -->
+        <div class="logo-nav">
+          <!-- Logo Placeholder for Inlustration -->
+          <a href="/index"><i class="fas fa-book-open"></i></a>
+        </div>
+
+        <!-- Navbar Links -->
+        <ul id="menu">
+          <li><a href="/index">Home</a></li>
+          <li><a href="/profile">Profile</a></li>
+          <li><a href="/friends">Friends</a></li>
+          <li><a href="/logs">Logs</a></li>
+          <li><a href="/logOut">Log out</a></li>
+          <li><a> Hi {{ user }} </li></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+        {% with messages = get_flashed_messages() %} {% if messages %}
+        <ul class="flashes">
+          {% for message in messages %}
+          <p class="message">{{ message }}</p>
+          {% endfor %}
+        </ul>
+        {% endif %} {% endwith %}
+      
+        <form method="POST">
+          {{ form.csrf_token }}
+
+            <h3>{{ form.name.label() }}</h3>
+            {{ form.name }}
+          
+            <h3>{{ form.date.label() }}</h3>
+            {{ form.date }}
+
+            <h3>{{ form.log.label() }}</h3>
+            {{ form.log }}
+
+            <div class="form-group">
+              <h3>{{ form.visible.label() }}</h3>
+              {{ form.visible}}
+            </div>
+            
+
+            {{ form.submit(class="btn") }}
+      </form>
+   
+    </div>
+  </body>
+</html>

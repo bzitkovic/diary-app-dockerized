@@ -1,0 +1,25 @@
+version: "3.8"
+
+services: 
+  web:
+    build: ./web
+    volumes:
+      - ./web/:/usr/src/app/
+    ports: 
+      - "5000:5000" 
+    depends_on: 
+      - "db"
+    env_file:
+      - ./web/.env.dev
+
+  db:
+    build: ./db
+    volumes: 
+      - postgres_data:/var/lib/postgresql/data/    
+    environment: 
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=0000
+      - POSTGRES_DB=diaries
+
+volumes: 
+  postgres_data:

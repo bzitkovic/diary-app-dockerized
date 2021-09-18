@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/style.css" />       
+    <title>Login</title>
+  </head>
+  <body>
+    <div class="container">
+      <h2>WELCOME friend </br> To the most wonderful little diary!</h2>
+      {% with messages = get_flashed_messages() %} {% if messages %}
+      <ul class="flashes">
+        {% for message in messages %}
+        <p id="message" class="message">{{ message }}</p>
+        {% endfor %}
+      </ul>
+      {% endif %} {% endwith %}
+
+     <form method="POST">
+      {{ form.csrf_token }}
+
+      {{ form.username.label() }}
+      {{ form.username }}
+
+      {{ form.password.label() }}
+      {{ form.password }}
+
+      {{ form.submit(class="btn") }}
+     </form>
+
+     <a href="/register"><button class="btn">Register</button></a>
+
+    </div>
+  </body>
+</html>
+

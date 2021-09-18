@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+    <title>Diary</title>
+  </head>
+  <body>
+    <nav id="navbar" class="">
+      <div class="nav-wrapper">
+        <!-- Navbar Logo -->
+        <div class="logo-nav">
+          <!-- Logo Placeholder for Inlustration -->
+          <a href="/index"><i class="fas fa-book-open"></i></a>
+        </div>
+
+        <!-- Navbar Links -->
+        <ul id="menu">
+          <li><a href="/index">Home</a></li>
+          <li><a href="/profile">Profile</a></li>
+          <li><a href="/friends">Friends</a></li>
+          <li><a href="/logs">Logs</a></li>
+          <li><a href="/logOut">Log out</a></li>
+          <li><a> Hi {{ user.username }} </li></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <img src="../static/profile.png" alt="diary-image" class="logo" />
+      {% with messages = get_flashed_messages() %} {% if messages %}
+      <ul class="flashes">
+        {% for message in messages %}
+        <p class="message">{{ message }}</p>
+        {% endfor %}
+      </ul>
+      {% endif %} {% endwith %}
+  
+        <form method="POST">
+            {{ form.csrf_token }}
+
+            {{ form.username.label() }}
+            {{ form.username(readonly=True) }}
+
+            {{ form.password.label() }}
+            {{ form.password }}
+
+            {{ form.age.label() }}
+            {{ form.age }}
+
+            {{ form.sex.label() }}
+            {{ form.sex }}
+
+            {{ form.country.label() }}
+            {{ form.country }}
+
+            {{ form.city.label() }}
+            {{ form.city }}
+
+            {{ form.submit(class="btn") }}
+        
+        </form>
+    </div>
+  </body>
+</html>
